@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#d7d5d1">
+  <meta name="description" content="Свадебное приглашение">
+  <title>Бекзат & Алина — свадебное приглашение</title>
+  <link rel="preload" href="assets/images/hero-background.png" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/fonts/cormorant-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="is-loading">
+  <div class="site-loader" id="siteLoader" role="status" aria-live="polite">
+    <span class="loader-pearl" aria-hidden="true"></span>
+    <p id="loaderText">Загружаем приглашение…</p>
+    <button id="retryButton" type="button" hidden>Попробовать снова</button>
+  </div>
+
+  <main class="invitation-shell" id="siteContent">
+    <section class="hero" aria-labelledby="coupleNames">
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-copy">
+        <p class="hero-script">We are one</p>
+        <p class="hero-date"><span id="heroDay">12</span><span id="heroMonth">06</span><span id="heroYear">2027</span></p>
+        <h1 class="hero-names" id="coupleNames">
+          <span id="groomName">Бекзат</span>
+          <span id="brideName">Алина</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="invitation-note" aria-labelledby="invitationTitle">
+      <header class="note-heading">
+        <h2 id="invitationTitle">Дорогие родные<br>и друзья!</h2>
+      </header>
+
+      <div class="envelope-stage">
+        <img
+          class="envelope-image"
+          src="assets/images/envelope-letter.png"
+          alt="Конверт с приглашением"
+          loading="lazy"
+        >
+        <p class="letter-copy" id="invitationText">
+          Мы будем счастливы разделить с вами этот особенный день. Приглашаем вас стать частью нашего свадебного торжества!
+        </p>
+      </div>
+    </section>
+
+    <section class="date-section" aria-labelledby="dateTitle">
+      <p class="date-kicker" id="dateKicker">Сохраните эту дату</p>
+      <div class="date-lockup" id="dateTitle">
+        <span class="date-day" id="dateDay">12</span>
+        <span class="date-month" id="dateMonth">июня</span>
+        <span class="date-year" id="dateYear">2027</span>
+      </div>
+
+      <div class="calendar" aria-label="Календарь на июнь 2027 года">
+        <div class="calendar-title"><b id="calendarMonth">Июнь</b> <span id="calendarYear">2027</span></div>
+        <div class="calendar-grid calendar-weekdays" id="calendarWeekdays" aria-hidden="true">
+          <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+        </div>
+        <div class="calendar-grid calendar-days" id="calendarDays">
+          <span class="empty"></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+          <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span class="selected" aria-label="12 июня — день свадьбы">12</span><span>13</span>
+          <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+          <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+          <span>28</span><span>29</span><span>30</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="venue-section" id="venueSection" aria-labelledby="venueTitle">
+      <p class="venue-kicker" id="venueKicker">Место торжества</p>
+      <p class="venue-type" id="venueType">Банкетный зал</p>
+      <h2 id="venueTitle">Изумруд</h2>
+      <address id="venueAddress">г. Бишкек, ул. Чуй, 123</address>
+      <div class="venue-actions">
+        <a id="googleMapLink" href="#" target="_blank" rel="noopener noreferrer">Google Maps</a>
+        <a id="twoGisMapLink" href="#" target="_blank" rel="noopener noreferrer">2ГИС</a>
+      </div>
+    </section>
+
+    <section class="program-section" aria-labelledby="programTitle">
+      <div class="program-title-card">
+        <h2 id="programTitle">Программа дня</h2>
+      </div>
+
+      <ol class="program-list" id="programList">
+        <li class="program-event">
+          <time datetime="16:30">16:30</time>
+          <h3>Встреча гостей</h3>
+          <p>Приветственные напитки, тёплые объятия и памятные фотографии.</p>
+        </li>
+        <li class="program-event">
+          <time datetime="17:00">17:00</time>
+          <h3>Свадебная церемония</h3>
+          <p>Разделите с нами трогательный момент рождения нашей семьи.</p>
+        </li>
+        <li class="program-event">
+          <time datetime="18:00">18:00</time>
+          <h3>Праздничный ужин</h3>
+          <p>Вкусные блюда, искренние поздравления и уютная атмосфера.</p>
+        </li>
+        <li class="program-event">
+          <time datetime="20:00">20:00</time>
+          <h3>Танцы и веселье</h3>
+          <p>Зажигательные танцы, улыбки и незабываемые моменты.</p>
+        </li>
+        <li class="program-event">
+          <time datetime="23:00">23:00</time>
+          <h3>Завершение вечера</h3>
+          <p>Спасибо, что разделили с нами этот счастливый день!</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wish-section" id="wishSection" aria-labelledby="wishTitle">
+      <h2 id="wishTitle">Наши пожелания</h2>
+      <p id="wishText">Самый ценный подарок для нас — ваше присутствие, улыбки и хорошее настроение!</p>
+    </section>
+
+    <section class="rsvp-section" id="rsvpSection" aria-labelledby="rsvpTitle">
+      <div class="rsvp-heading">
+        <span id="rsvpLabel">Ваш ответ</span>
+        <h2 id="rsvpTitle">Будете ли вы<br>с нами?</h2>
+        <p id="rsvpLead">Пожалуйста, подтвердите присутствие — нам важно подготовить всё с заботой.</p>
+      </div>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <label class="rsvp-field">
+          <span id="nameLabel">Ваше имя</span>
+          <input id="guestName" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться?" maxlength="120" required>
+        </label>
+
+        <fieldset class="rsvp-attendance">
+          <legend id="attendanceLabel">Вы сможете прийти?</legend>
+          <label class="rsvp-choice">
+            <input type="radio" name="attending" value="yes" checked>
+            <span id="attendanceYes">С радостью приду</span>
+          </label>
+          <label class="rsvp-choice">
+            <input type="radio" name="attending" value="no">
+            <span id="attendanceNo">К сожалению, не смогу</span>
+          </label>
+        </fieldset>
+
+        <label class="rsvp-field" id="guestCountField">
+          <span id="guestCountLabel">Количество гостей</span>
+          <select name="guests_count">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+            <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+          </select>
+        </label>
+
+        <label class="rsvp-field" id="wishField">
+          <span id="guestWishLabel">Пожелание молодожёнам</span>
+          <textarea id="guestWish" name="wish" rows="4" maxlength="600" placeholder="Несколько тёплых слов…"></textarea>
+        </label>
+
+        <button class="rsvp-submit" type="submit"><span id="submitLabel">Отправить ответ</span><b aria-hidden="true">→</b></button>
+        <p class="rsvp-status" id="rsvpStatus" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="countdown-section" aria-labelledby="countdownTitle">
+      <h2 id="countdownTitle">До нашей свадьбы</h2>
+
+      <div class="countdown" aria-live="polite" aria-label="Обратный отсчёт до свадьбы">
+        <div><strong data-countdown="days">000</strong><span id="daysLabel">дней</span></div>
+        <div><strong data-countdown="hours">00</strong><span id="hoursLabel">часов</span></div>
+        <div><strong data-countdown="minutes">00</strong><span id="minutesLabel">минут</span></div>
+        <div><strong data-countdown="seconds">00</strong><span id="secondsLabel">секунд</span></div>
+      </div>
+
+      <div class="countdown-signature">
+        <span id="signatureLabel">С любовью,</span>
+        <strong id="signatureNames">Бекзат &amp; Алина</strong>
+      </div>
+    </section>
+  </main>
+
+  <div class="language-menu" id="languageMenu" hidden>
+    <div class="language-options" id="languageOptions" aria-label="Выбор языка"></div>
+    <button class="language-toggle" id="languageToggle" type="button" aria-expanded="false" aria-label="Выбрать язык">RU</button>
+  </div>
+
+  <noscript><p class="noscript-message">Для работы приглашения включите JavaScript.</p></noscript>
+</body>
+</html>
