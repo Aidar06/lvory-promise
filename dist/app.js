@@ -3,7 +3,10 @@ const $=selector=>document.querySelector(selector);
 const form=$('#rsvpForm');
 const status=$('#rsvpStatus');
 const countField=$('#guestCountField');
-const countSelect=form?.elements.guests_count;
+const countInput=$('#guestCountInput');
+const countValue=$('#guestCountValue');
+const countMinus=$('#guestMinus');
+const countPlus=$('#guestPlus');
 const previewMode=location.pathname.split('/').filter(Boolean).includes('preview');
 
 const UI={
@@ -53,10 +56,11 @@ function renderVenue(copy){
   const map=state.record.venue?.map||{},query=encodeURIComponent(address||content.name||'');$('#googleMapLink').href=safeHttpUrl(map.google_url,`https://www.google.com/maps/search/?api=1&query=${query}`);$('#twoGisMapLink').href=safeHttpUrl(map.two_gis_url,`https://2gis.kg/search/${query}`);
 }
 
-function syncAttendance(){if(!form)return;const attending=new FormData(form).get('attending')==='yes';countSelect.disabled=!attending;countField.classList.toggle('is-disabled',!attending)}
+function setGuestCount(value){const maximum=Number(countInput.dataset.max)||10,next=Math.max(1,Math.min(maximum,Number(value)||1));countInput.value=String(next);countValue.textContent=String(next);countMinus.disabled=next<=1||countField.classList.contains('is-disabled');countPlus.disabled=next>=maximum||countField.classList.contains('is-disabled')}
+function syncAttendance(){if(!form)return;const attending=new FormData(form).get('attending')==='yes';countInput.disabled=!attending;countField.classList.toggle('is-disabled',!attending);setGuestCount(countInput.value)}
 function configureRsvp(copy){
   const config=state.record.rsvp||{},enabled=config.enabled!==false;$('#rsvpSection').hidden=!enabled;if(!enabled)return;$('#wishField').hidden=config.allow_guest_wish===false;
-  const maximum=Math.max(1,Math.min(50,Number(config.max_guests)||10)),current=Number(countSelect.value)||1;countSelect.replaceChildren(...Array.from({length:maximum},(_,index)=>Object.assign(document.createElement('option'),{value:String(index+1),textContent:String(index+1)})));countSelect.value=String(Math.min(current,maximum));
+  const maximum=Math.max(1,Math.min(50,Number(config.max_guests)||10));countInput.dataset.max=String(maximum);setGuestCount(countInput.value);countMinus.setAttribute('aria-label',`${copy.count}: −`);countPlus.setAttribute('aria-label',`${copy.count}: +`);
   text('#rsvpLabel',copy.answer);text('#rsvpTitle',copy.rsvp);text('#rsvpLead',copy.rsvpLead);text('#nameLabel',copy.name);$('#guestName').placeholder=copy.namePlaceholder;text('#attendanceLabel',copy.attendance);text('#attendanceYes',copy.yes);text('#attendanceNo',copy.no);text('#guestCountLabel',copy.count);text('#guestWishLabel',copy.guestWish);$('#guestWish').placeholder=copy.wishPlaceholder;text('#submitLabel',copy.submit);syncAttendance();
 }
 
@@ -85,6 +89,8 @@ async function loadInvitation(){
 }
 
 form?.addEventListener('change',event=>{if(event.target.name==='attending')syncAttendance()});
+countMinus?.addEventListener('click',()=>setGuestCount(Number(countInput.value)-1));
+countPlus?.addEventListener('click',()=>setGuestCount(Number(countInput.value)+1));
 form?.addEventListener('submit',async event=>{
   event.preventDefault();const copy=UI[state.lang]||UI.ru,button=form.querySelector('button[type="submit"]'),data=new FormData(form),attendance=data.get('attending')==='yes',payload={name:String(data.get('name')||'').trim(),count:attendance?Math.max(1,Number(data.get('guests_count'))||1):1,attendance,wish:state.record.rsvp?.allow_guest_wish===false?'':String(data.get('wish')||'').trim()};status.className='rsvp-status';if(!payload.name){status.textContent=copy.nameRequired;status.classList.add('is-error');return}button.disabled=true;text('#submitLabel',copy.sending);status.textContent='';
   try{const response=await fetch(`${API_BASE}/${encodeURIComponent(state.publicId||invitationId())}/rsvp`,{method:'POST',headers:{Accept:'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)});if(!response.ok)throw new Error(`HTTP ${response.status}`);form.reset();syncAttendance();status.textContent=copy.success;status.classList.add('is-success')}

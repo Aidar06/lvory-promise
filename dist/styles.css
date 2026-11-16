@@ -85,12 +85,16 @@ body.is-loading .invitation-shell{visibility:hidden}
 .rsvp-form{display:grid;gap:24px;margin-top:52px}
 .rsvp-field{display:grid;gap:9px}
 .rsvp-field>span,.rsvp-attendance legend{color:rgba(246,240,231,.58);font:500 9px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase}
-.rsvp-field input,.rsvp-field select,.rsvp-field textarea{width:100%;border:0;border-bottom:1px solid rgba(246,240,231,.35);border-radius:0;padding:13px 0 15px;background:transparent;color:#f6f0e7;font:400 20px/1.2 var(--serif);outline:none}
+.rsvp-field input:not([type="hidden"]),.rsvp-field textarea{width:100%;border:0;border-bottom:1px solid rgba(246,240,231,.35);border-radius:0;padding:13px 0 15px;background:transparent;color:#f6f0e7;font:400 20px/1.2 var(--serif);outline:none}
 .rsvp-field input::placeholder,.rsvp-field textarea::placeholder{color:rgba(246,240,231,.35)}
-.rsvp-field input:focus,.rsvp-field select:focus,.rsvp-field textarea:focus{border-color:#f6f0e7}
-.rsvp-field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#f6f0e7 50%),linear-gradient(135deg,#f6f0e7 50%,transparent 50%);background-position:calc(100% - 6px) 50%,100% 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
-.rsvp-field select option{color:#2d2926;background:#f6f0e7}
+.rsvp-field input:focus,.rsvp-field textarea:focus{border-color:#f6f0e7}
 .rsvp-field textarea{resize:vertical;min-height:105px}
+.guest-counter{height:64px;margin-top:3px;padding:5px;display:grid;grid-template-columns:52px 1fr 52px;align-items:center;border:1px solid rgba(246,240,231,.28);border-radius:999px;background:rgba(246,240,231,.04)}
+.guest-counter button{width:52px;height:52px;padding:0;border:0;border-radius:50%;background:rgba(246,240,231,.11);color:#f6f0e7;cursor:pointer;font:400 28px/1 var(--serif);transition:background .2s ease,transform .2s ease}
+.guest-counter button:hover{background:rgba(246,240,231,.2)}
+.guest-counter button:active{transform:scale(.94)}
+.guest-counter button:disabled{cursor:not-allowed;opacity:.3}
+.guest-counter output{text-align:center;font:400 29px/1 var(--serif)}
 .rsvp-attendance{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 14px;padding:0;border:0}
 .rsvp-attendance legend{grid-column:1/-1;margin-bottom:20px}
 .rsvp-choice{position:relative;cursor:pointer}
@@ -102,7 +106,7 @@ body.is-loading .invitation-shell{visibility:hidden}
 .rsvp-submit:disabled{cursor:wait;opacity:.58}
 .rsvp-status{min-height:22px;margin:0;text-align:center;color:rgba(246,240,231,.75);font:400 15px/1.3 var(--serif)}
 .rsvp-status.is-success{color:#e7d8bb}.rsvp-status.is-error{color:#f0b8ae}
-.rsvp-field.is-disabled{opacity:.35}.rsvp-field.is-disabled select{pointer-events:none}
+.rsvp-field.is-disabled{opacity:.35}.rsvp-field.is-disabled .guest-counter{pointer-events:none}
 
 @media(max-width:380px){.rsvp-attendance{grid-template-columns:1fr}.rsvp-attendance legend{grid-column:auto}}
 

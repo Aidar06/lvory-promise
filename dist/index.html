@@ -148,13 +148,15 @@
           </label>
         </fieldset>
 
-        <label class="rsvp-field" id="guestCountField">
+        <div class="rsvp-field" id="guestCountField">
           <span id="guestCountLabel">Количество гостей</span>
-          <select name="guests_count">
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
-            <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
-          </select>
-        </label>
+          <div class="guest-counter">
+            <button id="guestMinus" type="button" aria-label="Уменьшить количество гостей">−</button>
+            <output id="guestCountValue" aria-live="polite">1</output>
+            <button id="guestPlus" type="button" aria-label="Увеличить количество гостей">+</button>
+            <input id="guestCountInput" name="guests_count" type="hidden" value="1">
+          </div>
+        </div>
 
         <label class="rsvp-field" id="wishField">
           <span id="guestWishLabel">Пожелание молодожёнам</span>
